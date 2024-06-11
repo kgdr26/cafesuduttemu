@@ -80,7 +80,7 @@
         </div>
     </section>
 
-    <section class="my-lg-14 my-8">
+    <section class="">
         <div class="container ">
             <div class="input-group ">
                 <input class="form-control rounded" type="search" placeholder="Search for products">
@@ -93,7 +93,7 @@
         </div>
     </section>
 
-    <section class="my-lg-14 my-8">
+    <section class="">
         <div class="container ">
             @for ($i=1;$i<=10;$i++)
                 <div class="row g-4 row-cols-1 mt-3">

@@ -1,0 +1,105 @@
+.card-style{
+    width: 100%;
+    height: auto;
+    border: 1px solid #e3e6f0;
+    border-radius: 0.3rem;
+    padding: 0.5rem;    
+}
+
+.card-foto{
+    width: 100%;
+    height: 16rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}
+
+.card-foto img{
+    width: 100%;
+    min-height: 16rem;
+    max-height: 16rem;
+    border-radius: 0.3rem;
+    margin: 0rem;
+}
+
+.input-type-file{
+    width: 100%;
+    height: auto;
+}
+
+[type="file"] {
+    height: 0;  
+    width: 0;
+    overflow: hidden;
+}
+
+[type="file"] + label {
+    width: 100%;
+    background: #008cff;
+    padding: 10px 30px;
+    border: 2px solid #008cff;
+    border-radius: 3px;
+    color: #FFFFFF;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-align: center;
+}
+
+[type="file"] + label:hover {
+    background: #FFFFFF;
+    color: #008cff;
+}
+
+.image-style{
+    width: 100%;
+    border-radius: 0.3rem;
+    max-height: 20rem;
+}
+
+/* Preloader */
+.preload-wrapper {
+    z-index: 9999999999;
+    position: fixed;
+    top: 45%;
+    left: 45%;
+    right: 0rem;
+    bottom: 0;
+    background: transparent;
+    overflow: hidden;
+    width: 10rem;
+    height: 10rem;
+    display: none;
+  }
+  
+  .spinner-border {
+    display: inline-block;
+    width: 10rem;
+    height: 10rem;
+    vertical-align: -.125em;
+    border: 1rem solid #012970;
+    border-right-color: transparent;
+    border-radius: 50%;
+    -webkit-animation: .75s linear infinite spinner-border;
+    animation: .75s linear infinite spinner-border;
+  }
+  
+  .action-input{
+    cursor: pointer;
+  }
+  
+  /* end Pre loader */
+
+  .card-cam{
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+}
+
+.card-cam canvas{
+    width: 70%;
+    height: auto;
+    border-radius: 0.3rem;
+    border: 1px solid #C86060;
+}

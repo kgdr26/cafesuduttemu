@@ -333,7 +333,7 @@ div.zoom img {
 body {
     -webkit-text-size-adjust: 100%;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-    background-color: var(--fc-body-bg);
+    background-color: #F5EFE6;
     color: var(--fc-body-color);
     font-family: var(--fc-body-font-family);
     font-size: var(--fc-body-font-size);
@@ -28237,7 +28237,7 @@ input::-webkit-outer-spin-button {
 
 .navbar-vertical-nav .navbar-vertical {
     background-color: var(--fc-white);
-    border-right: 1px dashed var(--fc-gray-300);
+    border-right: 1px dashed #76453B;
     display: flex;
     flex: 1 0 auto;
     flex-direction: column;
@@ -28270,7 +28270,7 @@ input::-webkit-outer-spin-button {
 .navbar-vertical-nav .navbar-vertical .navbar-nav .nav-item .nav-link {
     align-items: center;
     border-radius: var(--fc-border-radius);
-    color: var(--fc-gray-600);
+    color: #76453B;
     display: flex;
     height: 48px;
     justify-content: flex-start;
@@ -28288,14 +28288,14 @@ input::-webkit-outer-spin-button {
 }
 
 .navbar-vertical-nav .navbar-vertical .navbar-nav .nav-item .nav-link:hover {
-    background-color: var(--fc-gray-100);
-    color: var(--fc-gray-800);
+    background-color: #F5EFE6;
+    color: #000000;
     text-decoration: none
 }
 
 .navbar-vertical-nav .navbar-vertical .navbar-nav .nav-item .nav-link.active {
-    background-color: var(--fc-light-primary);
-    color: var(--fc-dark-primary)
+    background-color: #F5EFE6;
+    color: #000000;
 }
 
 .navbar-vertical-nav .navbar-vertical .navbar-nav .nav-item .nav-link .nav-link-icon {

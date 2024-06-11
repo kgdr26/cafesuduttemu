@@ -11,7 +11,7 @@
                     <a class="navbar-brand mb-0" href="">
                         <img src="{{asset('assets/images/logo/freshcart-logo.svg')}}" alt="eCommerce HTML Template" style="width: 55%;">
                     </a>
-                    <div class="d-flex align-items-center lh-1">
+                    <div class="d-flex align-items-center lh-1" style="white-space: nowrap">
                         <div class="list-inline me-4">
                             <div class="list-inline-item ">
                                 <div class="dropdown  ">
@@ -65,9 +65,6 @@
                                 </div>
                             </div>
                         </div>
-                        <button class="collapsed btn btn-primary btn-sm" type="button">
-                            LOGIN
-                        </button>
                     </div>
                 </div>
             </div>
@@ -123,11 +120,6 @@
                                 </ul>
                             </div>
                         </div>
-                    </div>
-                    <div class="list-inline-item">
-                        <a href="" class="btn btn-primary d-none d-xl-block btn-sm">
-                            Login
-                        </a>
                     </div>
                 </div>
             </div>
