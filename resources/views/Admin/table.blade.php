@@ -52,7 +52,9 @@
                                         <td>{{$no++}}</td>
                                         <td>{{$value->kode}}</td>
                                         <td>{{$value->name}}</td>
-                                        <td>{{$value->qr_code}}</td>
+                                        <td>
+                                            <button type="button" class="btn btn-info btn-sm" data-name="show_qr" data-item="{{$value->id}}">{{$value->qr_code}}</button>
+                                        </td>
                                         <td>
                                             @if ($value->status == 1)
                                                 <span class="badge bg-info text-dark">Terisi</span>
@@ -148,6 +150,28 @@
     </div>
 </div>
 {{-- End Modal Edit --}}
+
+{{-- Modal Show QR --}}
+<div class="modal fade" id="modal_show_qr" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Show QR</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="card-foto">
+                    <img src="" alt="user avatar" id="img_qr">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" data-name="save_add">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+{{-- End Modal Show QR --}}
 
 {{-- JS Add Data --}}
 <script>
@@ -354,6 +378,41 @@
     });
 </script>
 {{-- End Select2 --}}
+
+{{-- JS Show QR --}}
+<script>
+    $(document).on("click", "[data-name='show_qr']", function (e) {
+        var id      = $(this).attr("data-item");
+        var table   = 'mst_table';
+        var field   = 'id';
+
+        $.ajax({
+            type: "POST",
+            url: "{{ route('actionshowdata') }}",
+            data: {id:id,table:table,field:field},
+            cache: false,
+            success: function(data) {
+                // console.log(data['data']);
+                var show_qr   = "assets/img/qrcode/"+data['data'].qr_code;
+                $('#img_qr').attr('src', show_qr);
+                $("#modal_show_qr").modal('show');
+            },
+            error: function (data) {
+                Swal.fire({
+                    position:'center',
+                    title: 'Action Not Valid!',
+                    icon: 'warning',
+                    showConfirmButton: true,
+                    // timer: 1500
+                }).then((data) => {
+                    // location.reload();
+                })
+            }
+        });
+
+    });
+</script>
+{{-- End JS Show QR --}}
 
 {{-- Datatable --}}
 <script>

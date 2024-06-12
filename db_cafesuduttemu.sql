@@ -210,6 +210,8 @@ CREATE TABLE `sessions` (
 /*Data for the table `sessions` */
 
 insert  into `sessions`(`id`,`user_id`,`ip_address`,`user_agent`,`payload`,`last_activity`) values 
+('hJsMHss2JAeUiITjH9kK4xOSDUyxuG7ALfYvbCdF',1,'127.0.0.1','Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36 Edg/125.0.0.0','YTo1OntzOjY6Il90b2tlbiI7czo0MDoiNjZqempwbEtOYm1qa3N0aGNMc2drZ3hrVDJIOTExRkxkcGNoRFd1QiI7czozOiJ1cmwiO2E6MTp7czo4OiJpbnRlbmRlZCI7czozNToiaHR0cHM6Ly9jYWZlc3VkdXR0ZW11LmtnZHIvY2F0ZWdvcnkiO31zOjk6Il9wcmV2aW91cyI7YToxOntzOjM6InVybCI7czozMjoiaHR0cHM6Ly9jYWZlc3VkdXR0ZW11LmtnZHIvdXNlcnMiO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX1zOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aToxO30=',1718235571),
+('KHzWuH1KeLeuyKVGS8lbdUqGzTncTj5W8LgGjzeH',NULL,'127.0.0.1','Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36 Edg/125.0.0.0','YTozOntzOjY6Il90b2tlbiI7czo0MDoiNndaRXBWajloTFVnM2ZOc20xTkxxVWdnUmhiN0M4aXEwU1l0ZXBLaSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzI6Imh0dHBzOi8vY2FmZXN1ZHV0dGVtdS5rZ2RyL2xvZ2luIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1718235579),
 ('UFACLGE1QzBrZWP3vwfnjQwAP2m1UfnRYh8Mui6S',1,'127.0.0.1','Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36 Edg/125.0.0.0','YTo0OntzOjY6Il90b2tlbiI7czo0MDoiTlJ0V0kwQ1V1WjlpUWgwaGl3TFJyQlRIRnJuU0Z5em1ocXlZMWhudCI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzI6Imh0dHBzOi8vY2FmZXN1ZHV0dGVtdS5rZ2RyL3VzZXJzIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MTt9',1718211154);
 
 /*Table structure for table `trx_product` */
@@ -264,7 +266,7 @@ CREATE TABLE `users` (
 /*Data for the table `users` */
 
 insert  into `users`(`id`,`name`,`email`,`email_verified_at`,`username`,`password`,`pass`,`role_id`,`foto`,`no_tlp`,`remember_token`,`is_active`,`update_by`,`last_update`,`created_at`,`updated_at`) values 
-(1,'Kang Dru','test@example.com','2024-06-11 09:48:24','kgdr','$2y$12$Hgjc66JLEeQs7T6PT.nn4uyQCrc/yXS.cjJ5ZYBeXboyeCIIGJ/Vy','1',1,'default.jpg','098876','xlnNLuR0HM',1,1,'2024-06-11 09:48:24','2024-06-11 09:48:24','2024-06-11 09:48:24'),
+(1,'Admin','test@example.com','2024-06-13 06:39:29','adm','$2y$12$2tlfuDsoO/1egzSy/uBwLeARLgeNo3wGa.6BrdNyNqrXftltouI/W','1',1,'default.jpg','098876','xlnNLuR0HM',1,1,'2024-06-13 06:39:29','2024-06-13 06:39:29','2024-06-13 06:39:29'),
 (2,'Kasir','tes@name.com','2024-06-11 09:20:59','kasir','$2y$12$ApuBh4AqxN9G9xkbUL3HJusUbUV3dzBtJN6dsd8h9mLzscYkDvl5q','1',2,'default.jpg','08997654',NULL,1,1,'2024-06-11 09:20:59','2024-06-11 09:20:59','2024-06-11 09:20:59'),
 (4,'Koki','te1s@name.com','2024-06-11 09:21:13','koki','$2y$12$yoUl4dvxTZe78XgIXyqpuek0.Y7riJG7EUAHr1BCB7yTA7fps/fHm','1',3,'default.jpg','0988765432',NULL,1,1,'2024-06-11 09:21:13','2024-06-11 09:21:13','2024-06-11 09:21:13');
 
