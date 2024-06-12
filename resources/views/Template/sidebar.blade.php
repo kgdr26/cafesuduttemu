@@ -69,7 +69,7 @@
                     </li>
 
                     <li class="nav-item ">
-                        <a class="nav-link " href="">
+                        <a class="nav-link @if (Route::currentRouteName()=='table') active @endif" href="{{route('table')}}">
                             <div class="d-flex align-items-center">
                                 <span class="nav-link-icon"> <i class="bi bi-table"></i></span>
                                 <span class="nav-link-text">Table</span>
@@ -165,7 +165,7 @@
                     </li>
 
                     <li class="nav-item ">
-                        <a class="nav-link " href="">
+                        <a class="nav-link @if (Route::currentRouteName()=='table') active @endif" href="{{route('table')}}">
                             <div class="d-flex align-items-center">
                                 <span class="nav-link-icon"> <i class="bi bi-table"></i></span>
                                 <span class="nav-link-text">Table</span>

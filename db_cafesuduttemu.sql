@@ -116,6 +116,68 @@ insert  into `migrations`(`id`,`migration`,`batch`) values
 (2,'0001_01_01_000001_create_cache_table',1),
 (3,'0001_01_01_000002_create_jobs_table',1);
 
+/*Table structure for table `mst_category` */
+
+DROP TABLE IF EXISTS `mst_category`;
+
+CREATE TABLE `mst_category` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) DEFAULT NULL,
+  `is_active` int(11) DEFAULT NULL,
+  `update_by` int(11) DEFAULT NULL,
+  `last_update` timestamp NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+/*Data for the table `mst_category` */
+
+insert  into `mst_category`(`id`,`name`,`is_active`,`update_by`,`last_update`) values 
+(1,'Foods',1,1,'2024-06-11 09:49:26'),
+(2,'Drink',1,1,'2024-06-11 14:32:06');
+
+/*Table structure for table `mst_role` */
+
+DROP TABLE IF EXISTS `mst_role`;
+
+CREATE TABLE `mst_role` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) DEFAULT NULL,
+  `is_active` int(11) DEFAULT NULL,
+  `update_by` int(11) DEFAULT NULL,
+  `last_update` timestamp NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+/*Data for the table `mst_role` */
+
+insert  into `mst_role`(`id`,`name`,`is_active`,`update_by`,`last_update`) values 
+(1,'SUPERADMIN',1,1,'2024-06-11 07:41:16'),
+(2,'KASIR',1,1,'2024-06-11 07:41:22'),
+(3,'KOKI',1,1,'2024-06-11 07:41:25'),
+(4,'CUSTOMER',1,1,'2024-06-11 07:41:37');
+
+/*Table structure for table `mst_table` */
+
+DROP TABLE IF EXISTS `mst_table`;
+
+CREATE TABLE `mst_table` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `kode` varchar(255) DEFAULT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `qr_code` varchar(255) DEFAULT NULL,
+  `status` int(11) DEFAULT NULL,
+  `is_active` int(11) DEFAULT NULL,
+  `update_by` int(11) DEFAULT NULL,
+  `last_update` timestamp NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+/*Data for the table `mst_table` */
+
+insert  into `mst_table`(`id`,`kode`,`name`,`qr_code`,`status`,`is_active`,`update_by`,`last_update`) values 
+(1,'01','Meja 01','01.svg',0,1,1,'2024-06-12 23:51:57'),
+(2,'02','Meja 02','02.svg',0,1,1,'2024-06-12 23:52:25');
+
 /*Table structure for table `password_reset_tokens` */
 
 DROP TABLE IF EXISTS `password_reset_tokens`;
@@ -148,9 +210,31 @@ CREATE TABLE `sessions` (
 /*Data for the table `sessions` */
 
 insert  into `sessions`(`id`,`user_id`,`ip_address`,`user_agent`,`payload`,`last_activity`) values 
-('fLtg1COpbCDHLLsXhJOHGUFuTCcvzmm2lBCKStSf',NULL,'127.0.0.1','Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Mobile Safari/537.36 Edg/125.0.0.0','YTozOntzOjY6Il90b2tlbiI7czo0MDoiWkJzWTR4MnIwTnR4QUNWM0FpVHluZ0p0RVZuUDk3STdSbVlzT0drUSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MjY6Imh0dHBzOi8vY2FmZXN1ZHV0dGVtdS5rZ2RyIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1717986325),
-('swtlwNMN9VfdhPRuzTdtiX0df5BWVsTcIbOq1VFt',NULL,'127.0.0.1','Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Mobile Safari/537.36 Edg/125.0.0.0','YTozOntzOjY6Il90b2tlbiI7czo0MDoia1JocGxnU1Q2cEtmTmsweUdwQUxmbFZjSnBVVjBWV21SYzh5TzdYNyI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MjY6Imh0dHBzOi8vY2FmZXN1ZHV0dGVtdS5rZ2RyIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1718025406),
-('TyMnpDutRT1SOZhfjqizlM3D5iqFuQCz6at7DgNN',NULL,'127.0.0.1','Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36 Edg/125.0.0.0','YTozOntzOjY6Il90b2tlbiI7czo0MDoiWGV5VkdFbGdiQnBmWThVSk54aU95TGRxbzdQZE5DRGdzMDhTRmdUbyI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MjY6Imh0dHBzOi8vY2FmZXN1ZHV0dGVtdS5rZ2RyIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1718003129);
+('UFACLGE1QzBrZWP3vwfnjQwAP2m1UfnRYh8Mui6S',1,'127.0.0.1','Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36 Edg/125.0.0.0','YTo0OntzOjY6Il90b2tlbiI7czo0MDoiTlJ0V0kwQ1V1WjlpUWgwaGl3TFJyQlRIRnJuU0Z5em1ocXlZMWhudCI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzI6Imh0dHBzOi8vY2FmZXN1ZHV0dGVtdS5rZ2RyL3VzZXJzIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MTt9',1718211154);
+
+/*Table structure for table `trx_product` */
+
+DROP TABLE IF EXISTS `trx_product`;
+
+CREATE TABLE `trx_product` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  `category_id` int(11) DEFAULT NULL,
+  `price` int(11) DEFAULT NULL,
+  `qty` int(11) DEFAULT NULL,
+  `foto` varchar(255) DEFAULT NULL,
+  `is_active` int(11) DEFAULT NULL,
+  `update_by` int(11) DEFAULT NULL,
+  `last_update` timestamp NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+/*Data for the table `trx_product` */
+
+insert  into `trx_product`(`id`,`name`,`category_id`,`price`,`qty`,`foto`,`is_active`,`update_by`,`last_update`) values 
+(1,'Nasi Goreng',1,9000,80,'8925.png',1,1,'2024-06-11 10:59:35'),
+(2,'Mie Goreng',1,8000,10,'84687.png',1,1,'2024-06-11 10:59:56'),
+(3,'Ayam Kecap',1,30000,70,'39946.png',1,1,'2024-06-11 14:31:53');
 
 /*Table structure for table `users` */
 
@@ -160,19 +244,29 @@ CREATE TABLE `users` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
-  `email_verified_at` timestamp NULL DEFAULT NULL,
+  `email_verified_at` timestamp NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `username` varchar(255) DEFAULT NULL,
   `password` varchar(255) NOT NULL,
+  `pass` varchar(255) DEFAULT NULL,
+  `role_id` int(11) DEFAULT NULL,
+  `foto` varchar(255) DEFAULT NULL,
+  `no_tlp` varchar(255) DEFAULT NULL,
   `remember_token` varchar(100) DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
+  `is_active` int(11) DEFAULT NULL,
+  `update_by` int(11) DEFAULT NULL,
+  `last_update` timestamp NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `created_at` timestamp NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `updated_at` timestamp NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   PRIMARY KEY (`id`),
   UNIQUE KEY `users_email_unique` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 /*Data for the table `users` */
 
-insert  into `users`(`id`,`name`,`email`,`email_verified_at`,`password`,`remember_token`,`created_at`,`updated_at`) values 
-(1,'Test User','test@example.com','2024-06-10 01:13:37','$2y$12$z1/db1J2In5JziphVv124eKp.M24D8RO1m3xAqRlcgiwE6N8b/NBa','xlnNLuR0HM','2024-06-10 01:13:37','2024-06-10 01:13:37');
+insert  into `users`(`id`,`name`,`email`,`email_verified_at`,`username`,`password`,`pass`,`role_id`,`foto`,`no_tlp`,`remember_token`,`is_active`,`update_by`,`last_update`,`created_at`,`updated_at`) values 
+(1,'Kang Dru','test@example.com','2024-06-11 09:48:24','kgdr','$2y$12$Hgjc66JLEeQs7T6PT.nn4uyQCrc/yXS.cjJ5ZYBeXboyeCIIGJ/Vy','1',1,'default.jpg','098876','xlnNLuR0HM',1,1,'2024-06-11 09:48:24','2024-06-11 09:48:24','2024-06-11 09:48:24'),
+(2,'Kasir','tes@name.com','2024-06-11 09:20:59','kasir','$2y$12$ApuBh4AqxN9G9xkbUL3HJusUbUV3dzBtJN6dsd8h9mLzscYkDvl5q','1',2,'default.jpg','08997654',NULL,1,1,'2024-06-11 09:20:59','2024-06-11 09:20:59','2024-06-11 09:20:59'),
+(4,'Koki','te1s@name.com','2024-06-11 09:21:13','koki','$2y$12$yoUl4dvxTZe78XgIXyqpuek0.Y7riJG7EUAHr1BCB7yTA7fps/fHm','1',3,'default.jpg','0988765432',NULL,1,1,'2024-06-11 09:21:13','2024-06-11 09:21:13','2024-06-11 09:21:13');
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;

@@ -26,8 +26,10 @@ Route::middleware(['auth'])->group(function () {
     Route::middleware(['auth'],'role_id:1')->group(function () {
         Route::get('users', [AdminController::class, 'users'])->name('users');
         Route::get('category', [AdminController::class, 'category'])->name('category');
+        Route::get('table', [AdminController::class, 'table'])->name('table');
         Route::get('product', [AdminController::class, 'product'])->name('product');
-
+        Route::post('addtable', [AdminController::class, 'addtable'])->name('addtable');
+        Route::post('edittable', [AdminController::class, 'edittable'])->name('edittable');
     });
 
     Route::middleware(['auth'],'role_id:2')->group(function () {

@@ -13,6 +13,7 @@ use PhpOffice\PhpSpreadsheet\IOFactory;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 use Symfony\Component\HttpFoundation\StreamedResponse;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 use Illuminate\Support\Carbon;
 use App\Models\user;
 use App\Models\Admin;
@@ -57,6 +58,73 @@ class AdminController extends Controller
         );
 
         return view('Admin.category')->with($data);
+    }
+
+    function table(): object {
+        $arr    = DB::table('mst_table')->where('is_active', 1)->get();
+        $data = array(
+            'title' => 'Category',
+            'idnusr' => $this->idnusr(),
+            'arr'   => $arr,
+        );
+
+        return view('Admin.table')->with($data);
+    }
+
+    function addtable(Request $request) : object {
+        $kode   = $request['kode'];
+        $name   = $request['name'];
+        $cek    = DB::table('mst_table')->where('kode', $kode)->where('is_active', 1)->get();
+        if(count($cek) <= 0){
+            $data   = array(
+                'kode'      => $kode,
+                'name'      => $name,
+                'qr_code'   => $kode.'.svg',
+                'status'    => 0,
+                'is_active' => 1,
+                'update_by' => auth::user()->id,
+            );
+            DB::table('mst_table')->insert([$data]);
+            $qrCode = QrCode::size(300)->generate($kode);
+            $filePath = 'assets/img/qrcode/'.$kode.'.svg';
+            file_put_contents(public_path($filePath), $qrCode);
+            return response('success');
+        }else{
+            return response('error');
+        }
+    }
+
+    function edittable(Request $request) : object {
+        $id     = $request['id'];
+        $kode   = $request['kode'];
+        $name   = $request['name'];
+        $cek    = DB::table('mst_table')->where('kode', $kode)->where('is_active', 1)->get();
+        if(count($cek) <= 0){
+            $data   = array(
+                'kode'      => $kode,
+                'name'      => $name,
+                'qr_code'   => $kode.'.svg',
+                'update_by' => auth::user()->id,
+            );
+            DB::table('mst_table')->where('id', $id)->update($data);
+            $qrCode = QrCode::size(300)->generate($kode);
+            $filePath = 'assets/img/qrcode/'.$kode.'.svg';
+            file_put_contents(public_path($filePath), $qrCode);
+
+            return response('success');
+        }else{
+            $ce = DB::table('mst_table')->where('id', $id)->first();
+            if($ce->kode == $kode){
+                $data   = array(
+                    'name'      => $name,
+                    'update_by' => auth::user()->id,
+                );
+                DB::table('mst_table')->where('id', $id)->update($data);
+                return response('success');
+            }else{
+                return response('error');
+            }
+        }
     }
 
     function product(): object {
