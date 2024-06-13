@@ -59,7 +59,13 @@
                                         <td>{{$value->cat_name}}</td>
                                         <td>Rp. {{number_format($value->price, 0, ',', '.')}}</td>
                                         <td>{{$value->qty}}</td>
-                                        <td>Is Active</td>
+                                        <td>
+                                            @if ($value->is_active == 1)
+                                                <span class="badge bg-info">Active</span>
+                                            @else
+                                                <span class="badge bg-danger text-dark">In Active</span>
+                                            @endif
+                                        </td>
                                         <td class="text-center">
                                             <button type="button" class="btn btn-warning btn-sm" data-name="edit" data-item="{{$value->id}}">
                                                 <i class="bi bi-pencil-square"></i>
