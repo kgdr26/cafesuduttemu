@@ -9,16 +9,16 @@
                     <div class="card border-0 shadow">
                         <div class="card-body p-6">
                             <div class="mb-4">
-                                <h1 class="mt-3 mb-0 h4">Masukkan Kode Atau Scane</h1>
-                                <small>Masukkan kode atau scane untuk memesan</small>
+                                <h1 class="mt-3 mb-0 h4">Masukkan Kode Atau Scan</h1>
+                                <small>Masukkan kode atau scan untuk memesan</small>
                             </div>
                             <div class="row g-3">
                                 <div class="col">
                                     <label for="postcod" class="visually-hidden">Postcode</label>
-                                    <input type="text" class="form-control" id="" placeholder="Enter Postcode" >
+                                    <input type="text" class="form-control" id="" placeholder="Enter Postcode" disabled>
                                 </div>
                                 <div class="col-auto">
-                                    <button type="submit" class="btn btn-primary"><i class="bi bi-qr-code-scan"></i></button>
+                                    <button type="submit" class="btn btn-primary" data-name="action_scane"><i class="bi bi-qr-code-scan"></i></button>
                                 </div>
                             </div>
                         </div>
@@ -28,7 +28,7 @@
         </div>
     </section>
 
-    <section class="my-lg-14 my-8">
+    <section class="my-lg-8 my-8">
         <div class="container ">
             <div class="row align-items-center mb-6">
                 <div class="col-10 ">
@@ -54,7 +54,7 @@
                 <div class="position-relative">
                     <div class="slider-8-columns " id="slider-8-columns">
                         <div class="item">
-                            <a href="" class="text-decoration-none text-inherit">
+                            <a href="{{route('home',['category_id'=>null])}}" class="text-decoration-none text-inherit">
                                 <div class="card mb-0 card-lift">
                                     <div class="card-body text-center py-3 text-center">
                                         <div>ALL</div>
@@ -63,24 +63,24 @@
                             </a>
                         </div>
 
-                        @for ($i=1;$i<=10;$i++)
+                        @foreach ($category as $key => $val)
                             <div class="item">
-                                <a href="" class="text-decoration-none text-inherit">
+                                <a href="{{route('home',['category_id'=>$val->id])}}" class="text-decoration-none text-inherit">
                                     <div class="card mb-0 card-lift">
                                         <div class="card-body text-center py-3 text-center">
-                                            <div>Bakery</div>
+                                            <div>{{$val->name}}</div>
                                         </div>
                                     </div>
                                 </a>
                             </div>
-                        @endfor
+                        @endforeach
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="">
+    {{-- <section class="">
         <div class="container ">
             <div class="input-group ">
                 <input class="form-control rounded" type="search" placeholder="Search for products">
@@ -91,11 +91,11 @@
                 </span>
             </div>
         </div>
-    </section>
+    </section> --}}
 
     <section class="">
-        <div class="container ">
-            @for ($i=1;$i<=10;$i++)
+        <div class="container mb-5">
+            @foreach ($product as $key => $val)
                 <div class="row g-4 row-cols-1 mt-3">
                     <div class="col">
                         <!-- card -->
@@ -107,19 +107,19 @@
                                     <div class="col-md-4 col-5">
                                         <div class="text-center position-relative ">
                                             <a href="">
-                                                <img src="../assets/images/products/product-img-1.jpg" alt="Grocery Ecommerce Template" class="mb-3 img-fluid">
+                                                <img src="{{asset('assets/img/products/'.$val->foto)}}" alt="Grocery Ecommerce Template" class="mb-3 img-fluid" style="min-width: 5rem;max-width: 5rem;">
                                             </a>
                                         </div>
                                     </div>
                                     <div class="col-md-8 col-7 flex-grow-1">
                                         <div class="text-small mb-1">
                                             <a href="#!" class="text-decoration-none text-muted">
-                                                <small>Snack & Munchies</small>
+                                                <small>{{$val->cat_name}}</small>
                                             </a>
                                         </div>
                                         <h2 class="fs-6">
                                             <a href="" class="text-inherit text-decoration-none">
-                                                Haldiram's Sev Bhujia
+                                                {{$val->name}}
                                             </a>
                                         </h2>
                                     <div>
@@ -127,12 +127,15 @@
                                 <div class=" mt-6">
                                     <!-- price -->
                                     <div>
-                                        <span class="text-dark">Rp. 20.000</span>
+                                        <span class="text-dark">Rp. {{number_format($val->price, 0, ',', '.')}}</span>
+                                    </div>
+                                    <div>
+                                        <span class="text-dark">Stock : {{$val->qty}}</span>
                                     </div>
                                     <div>
                                         <div class="input-group input-spinner  ">
                                             <input type="button" value="-" class="button-minus  btn  btn-sm " data-field="quantity">
-                                            <input type="number" step="1" max="10" value="1" name="quantity" class="quantity-field form-control-sm form-input">
+                                            <input type="number" step="1" max="{{$val->qty}}" value="1" name="quantity" class="quantity-field form-control-sm form-input">
                                             <input type="button" value="+" class="button-plus btn btn-sm " data-field="quantity">
                                         </div>
                                     </div>
@@ -146,11 +149,44 @@
                         </div>
                     </div>
                 </div>
-            @endfor
+            @endforeach
         </div>
     </section>
 
 </main>
+
+{{-- Modal Scan --}}
+<div class="modal fade" id="modal_scan" tabindex="-1" aria-labelledby="userModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content p-4">
+            <div class="modal-header border-0">
+                <h5 class="modal-title fs-3 fw-bold" id="userModalLabel">Scan</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+
+                <div class="mb-3">
+                    <label for="" class="form-label">Kode</label>
+                    <input type="text" class="form-control" id="" placeholder="Kode" data-name="kode">
+                </div>
+            </div>
+            <div class="modal-footer border-0">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" data-name="">Submit</button>
+            </div>
+        </div>
+    </div>
+</div>
+{{-- MOdal Scan --}}
+
+{{-- JS Scan --}}
+<script>
+    $(document).on("click", "[data-name='action_scane']", function (e) {
+
+        $("#modal_scan").modal('show');
+    });
+</script>
+{{-- End JS Scan --}}
 
 
 @stop

@@ -26,11 +26,31 @@ use DB;
 class HomeController extends Controller
 {
 
-    // LOg Bimbingan
-    function home(): object {
+    function home(Request $request): object {
+        $ipAddress = $request->ip();
+        $userAgent = $request->header('User-Agent');
+        $identitasperangkat = hash('sha256', $ipAddress . $userAgent);
+
+        $category_id    = $request['category_id'];
+        if(isset($category_id)){
+            $product    = DB::table('trx_product')->select('trx_product.*', 'mst_category.name as cat_name')
+                ->leftJoin('mst_category', 'mst_category.id', '=', 'trx_product.category_id')
+                ->whereIn('trx_product.is_active', [1])
+                ->where('trx_product.category_id', $category_id)->get();
+        }else{
+            $product    = DB::table('trx_product')->select('trx_product.*', 'mst_category.name as cat_name')
+                ->leftJoin('mst_category', 'mst_category.id', '=', 'trx_product.category_id')
+                ->whereIn('trx_product.is_active', [1])->get();
+        }
+
+        $category   = DB::table('mst_category')->where('is_active', 1)->get();
+
 
         $data = array(
-            'title'     => 'Log Bimbingan',
+            'title'     => 'Home',
+            'product'   => $product,
+            'category'  => $category,
+            'identitasperangkat' => $identitasperangkat
         );
 
         return view('Home.list')->with($data);

@@ -12,6 +12,7 @@ use App\Http\Controllers\AdminController;
 // });
 
 Route::get('/', [HomeController::class, 'home'])->name('home');
+Route::get('home', [HomeController::class, 'home'])->name('home');
 
 // Login
 Route::get('login', [AuthController::class, 'ShowFormLogin'])->name('login');
