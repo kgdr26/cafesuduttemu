@@ -22,7 +22,7 @@
                     </li>
 
                     <li class="nav-item ">
-                        <a class="nav-link " href="">
+                        <a class="nav-link @if (Route::currentRouteName()=='listpesanan') active @endif" href="{{route('listpesanan')}}">
                             <div class="d-flex align-items-center">
                                 <span class="nav-link-icon"> <i class="bi bi-card-checklist"></i></span>
                                 <span class="nav-link-text">List Pesanan</span>
@@ -37,7 +37,7 @@
                     </li>
 
                     <li class="nav-item ">
-                        <a class="nav-link " href="">
+                        <a class="nav-link @if (Route::currentRouteName()=='pembayaran') active @endif" href="{{route('pembayaran')}}">
                             <div class="d-flex align-items-center">
                                 <span class="nav-link-icon"> <i class="bi bi-cash-coin"></i></span>
                                 <span class="nav-link-text">Pembayaran</span>
@@ -117,7 +117,7 @@
                     </li>
 
                     <li class="nav-item ">
-                        <a class="nav-link " href="">
+                        <a class="nav-link @if (Route::currentRouteName()=='listpesanan') active @endif" href="{{route('listpesanan')}}">
                             <div class="d-flex align-items-center">
                                 <span class="nav-link-icon"> <i class="bi bi-card-checklist"></i></span>
                                 <span class="nav-link-text">List Pesanan</span>
@@ -132,7 +132,7 @@
                     </li>
 
                     <li class="nav-item ">
-                        <a class="nav-link " href="">
+                        <a class="nav-link @if (Route::currentRouteName()=='pembayaran') active @endif" href="{{route('pembayaran')}}">
                             <div class="d-flex align-items-center">
                                 <span class="nav-link-icon"> <i class="bi bi-cash-coin"></i></span>
                                 <span class="nav-link-text">Pembayaran</span>

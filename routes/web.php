@@ -5,7 +5,8 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\AdminController;
-
+use App\Http\Controllers\KokiController;
+use App\Http\Controllers\KasirController;
 
 // Route::get('/', function () {
 //     return view('welcome');
@@ -43,10 +44,16 @@ Route::middleware(['auth'])->group(function () {
     });
 
     Route::middleware(['auth'],'role_id:3')->group(function () {
+        Route::get('listpesanan', [KokiController::class, 'listpesanan'])->name('listpesanan');
+        Route::post('actioncheklist', [KokiController::class, 'actioncheklist'])->name('actioncheklist');
+        Route::post('actdoneorder', [KokiController::class, 'actdoneorder'])->name('actdoneorder');
 
     });
 
     Route::middleware(['auth'],'role_id:4')->group(function () {
+        Route::get('pembayaran', [KasirController::class, 'pembayaran'])->name('pembayaran');
+        Route::post('showprintorder', [KasirController::class, 'showprintorder'])->name('showprintorder');
+        Route::post('endorder', [KasirController::class, 'endorder'])->name('endorder');
 
     });
 

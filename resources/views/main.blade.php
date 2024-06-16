@@ -14,6 +14,9 @@
         <link href="{{ asset('assets/select2/select2.min.css') }}" rel="stylesheet">
         <link href="{{asset('assets/libs/feather-webfont/dist/feather-icons.css')}}" rel="stylesheet">
         <link href="{{asset('assets/libs/simplebar/dist/simplebar.min.css')}}" rel="stylesheet">
+        <link href="{{asset('assets/libs/slick-carousel/slick/slick.css')}}" rel="stylesheet" />
+        <link href="{{asset('assets/libs/slick-carousel/slick/slick-theme.css')}}" rel="stylesheet" />
+        <link href="{{asset('assets/libs/tiny-slider/dist/tiny-slider.css')}}" rel="stylesheet">
         <!-- Theme CSS -->
         <link rel="stylesheet" href="{{asset('assets/css/theme.min.css')}}">
         <style>
@@ -117,6 +120,8 @@
 
         <!-- Theme JS -->
         <script src="{{asset('assets/js/theme.min.js')}}"></script>
+        <script src="{{asset('assets/libs/slick-carousel/slick/slick.min.js')}}"></script>
+        <script src="{{asset('assets/js/vendors/slick-slider.js')}}"></script>
 
     </body>
 </html>

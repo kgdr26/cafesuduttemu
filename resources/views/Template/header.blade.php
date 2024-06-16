@@ -21,11 +21,6 @@
                                 <h5 class="mb-1 h6">{{ucwords($idnusr->name)}}</h5>
                                 <small>{{$idnusr->role_name}}</small>
                             </div>
-                            <ul class="list-unstyled px-2 py-3">
-                                <li>
-                                    <a class="dropdown-item" href="">Profile</a>
-                                </li>
-                            </ul>
                             <div class="border-top px-5 py-3">
                                 <a href="{{route('logout')}}">Log Out</a>
                             </div>

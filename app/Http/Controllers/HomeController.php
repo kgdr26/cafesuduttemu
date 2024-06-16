@@ -197,7 +197,11 @@ class HomeController extends Controller
         DB::table('trx_ordering')->where('id', $id_order)->update(['orderan'=>$orderan]);
 
         $qty_upd_prod   = $prod->qty-($dine_in+$take_away);
-        DB::table('trx_product')->where('id', $id_product)->update(['qty'=>$qty_upd_prod]);
+        if($qty_upd_prod <= 0){
+            DB::table('trx_product')->where('id', $id_product)->update(['qty'=>$qty_upd_prod,'is_active'=>2]);
+        }else{
+            DB::table('trx_product')->where('id', $id_product)->update(['qty'=>$qty_upd_prod]);
+        }
 
         return response('success');
     }

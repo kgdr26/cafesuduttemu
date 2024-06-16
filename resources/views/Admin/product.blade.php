@@ -63,7 +63,7 @@
                                             @if ($value->is_active == 1)
                                                 <span class="badge bg-info">Active</span>
                                             @else
-                                                <span class="badge bg-danger text-dark">In Active</span>
+                                                <span class="badge bg-danger">In Active</span>
                                             @endif
                                         </td>
                                         <td class="text-center">
