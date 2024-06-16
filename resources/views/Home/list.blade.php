@@ -178,7 +178,7 @@
                 </div>
                 <div class="mb-3">
                     <label for="" class="form-label">Kode</label>
-                    <input type="text" class="form-control" id="" placeholder="Kode" data-name="kode" id="kode">
+                    <input type="text" class="form-control" placeholder="Kode" data-name="kode" id="kode">
                 </div>
             </div>
             <div class="modal-footer border-0">
@@ -424,9 +424,51 @@
         var lastResult, countResults = 0;
 
         function onScanSuccess(decodedText, decodedResult) {
-            document.getElementById("successSound").play();
+            $("#modal_scan").modal('hide');
             $('#kode').val(decodedText);
-            // alert(decodedText)
+            var kode = decodedText;
+            $.ajax({
+                type: "POST",
+                url: "{{route('actbooking')}}",
+                data: {kode: kode},
+                cache: false,
+                success: function(response) {
+                    // console.log(data);
+                    location.reload();
+                    // if(response === 'success'){
+                    //     Swal.fire({
+                    //         position: 'center',
+                    //         title: 'Success!',
+                    //         icon: 'success',
+                    //         showConfirmButton: false,
+                    //         timer: 1500
+                    //     }).then((response) => {
+                    //         location.reload();
+                    //     })
+                    // }else{
+                    //     Swal.fire({
+                    //         position: 'center',
+                    //         title: 'Meja sudah di booking hubungin kasir!',
+                    //         icon: 'warning',
+                    //         showConfirmButton: true,
+                    //         // timer: 1500
+                    //     }).then((response) => {
+                    //         // location.reload();
+                    //     })
+                    // }
+                },
+                error: function (data) {
+                    Swal.fire({
+                        position:'center',
+                        title: 'Action Not Valid!',
+                        icon: 'warning',
+                        showConfirmButton: true,
+                        // timer: 1500
+                    }).then((data) => {
+                        // location.reload();
+                    })
+                }
+            });
         }
 
         var html5QrcodeScanner = new Html5QrcodeScanner(
