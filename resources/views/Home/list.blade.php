@@ -374,17 +374,29 @@
                 url: "{{route('actbooking')}}",
                 data: {kode: kode},
                 cache: false,
-                success: function(data) {
+                success: function(response) {
                     // console.log(data);
-                    Swal.fire({
-                        position:'center',
-                        title: 'Success!',
-                        icon: 'success',
-                        showConfirmButton: false,
-                        timer: 1500
-                    }).then((data) => {
-                        location.reload();
-                    })
+                    if(response === 'success'){
+                        Swal.fire({
+                            position: 'center',
+                            title: 'Success!',
+                            icon: 'success',
+                            showConfirmButton: false,
+                            timer: 1500
+                        }).then((response) => {
+                            location.reload();
+                        })
+                    }else{
+                        Swal.fire({
+                            position: 'center',
+                            title: 'Meja sudah di booking hubungin kasir!',
+                            icon: 'warning',
+                            showConfirmButton: true,
+                            // timer: 1500
+                        }).then((response) => {
+                            // location.reload();
+                        })
+                    }
                 },
                 error: function (data) {
                     Swal.fire({

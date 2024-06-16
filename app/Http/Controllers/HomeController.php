@@ -87,9 +87,14 @@ class HomeController extends Controller
             'is_active' => 1
         );
 
-        DB::table('trx_ordering')->insert([$data]);
-        DB::table('mst_table')->where('id', $id_table)->update(['status'=>1]);
-        return response('success');
+        $dt     = DB::table('trx_ordering')->where('id_table', $id_table)->where('is_active', 1)->first();
+        if(isset($dt)){
+            return response('error');
+        }else{
+            DB::table('trx_ordering')->insert([$data]);
+            DB::table('mst_table')->where('id', $id_table)->update(['status'=>1]);
+            return response('success');
+        }
     }
 
     function showdataorder(Request $request): object {
