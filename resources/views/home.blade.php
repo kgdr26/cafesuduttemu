@@ -70,6 +70,7 @@
         <script src="{{asset('assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js')}}"></script>
         <script src="{{asset('assets/libs/simplebar/dist/simplebar.min.js')}}"></script>
         <script src="{{asset('assets/sweetalert2/sweetalert2.all.min.js')}}"></script>
+        <script src="{{asset('assets/js/html5-qrcode.min.js')}}"></script>
         <script>
             $.ajaxSetup({
                 headers: {

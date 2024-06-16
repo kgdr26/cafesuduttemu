@@ -173,10 +173,12 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-
+                <div class="card-cam">
+                    <div id="qr_reader"></div>
+                </div>
                 <div class="mb-3">
                     <label for="" class="form-label">Kode</label>
-                    <input type="text" class="form-control" id="" placeholder="Kode" data-name="kode">
+                    <input type="text" class="form-control" id="" placeholder="Kode" data-name="kode" id="kode">
                 </div>
             </div>
             <div class="modal-footer border-0">
@@ -411,6 +413,48 @@
                 }
             });
         }
+    });
+
+    $('#modal_scan').on('shown.bs.modal', function (e) {
+        initQrCodeScanner();
+    });
+
+    function initQrCodeScanner() {
+        var resultContainer = document.getElementById('qr_reader_results');
+        var lastResult, countResults = 0;
+
+        function onScanSuccess(decodedText, decodedResult) {
+            document.getElementById("successSound").play();
+            $('#kode').val(decodedText);
+            // alert(decodedText)
+        }
+
+        var html5QrcodeScanner = new Html5QrcodeScanner(
+            "qr_reader", { fps: 10, qrbox: 200 });
+        html5QrcodeScanner.render(onScanSuccess);
+
+        // Close the modal and stop the scanner
+        $('#modal_scan').on('hidden.bs.modal', function (e) {
+            html5QrcodeScanner.clear();
+            // clear qr code
+            $('#kode').val('');
+        });
+    }
+
+    function docReady(fn) {
+        // see if DOM is already available
+        if (document.readyState === "complete"
+            || document.readyState === "interactive") {
+            // call on next available tick
+            setTimeout(fn, 1);
+        } else {
+            document.addEventListener("DOMContentLoaded", fn);
+        }
+    }
+
+    docReady(function () {
+        // Initialize scanner when DOM is ready
+        initQrCodeScanner();
     });
 </script>
 {{-- End JS Scan --}}
