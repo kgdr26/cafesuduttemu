@@ -156,6 +156,21 @@ insert  into `mst_role`(`id`,`name`,`is_active`,`update_by`,`last_update`) value
 (3,'KOKI',1,1,'2024-06-11 07:41:25'),
 (4,'CUSTOMER',1,1,'2024-06-11 07:41:37');
 
+/*Table structure for table `mst_status_order` */
+
+DROP TABLE IF EXISTS `mst_status_order`;
+
+CREATE TABLE `mst_status_order` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) DEFAULT NULL,
+  `is_active` int(11) DEFAULT NULL,
+  `update_by` int(11) DEFAULT NULL,
+  `last_update` timestamp NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+/*Data for the table `mst_status_order` */
+
 /*Table structure for table `mst_table` */
 
 DROP TABLE IF EXISTS `mst_table`;
@@ -175,9 +190,9 @@ CREATE TABLE `mst_table` (
 /*Data for the table `mst_table` */
 
 insert  into `mst_table`(`id`,`kode`,`name`,`qr_code`,`status`,`is_active`,`update_by`,`last_update`) values 
-(1,'01','Meja 01','01.svg',0,1,1,'2024-06-12 23:51:57'),
-(2,'02','Meja 02','02.svg',0,1,1,'2024-06-12 23:52:25'),
-(3,'03','Meja 03','03.svg',0,1,1,'2024-06-13 11:49:26'),
+(1,'01','Meja 01','01.svg',1,1,1,'2024-06-16 19:28:26'),
+(2,'02','Meja 02','02.svg',1,1,1,'2024-06-16 15:12:44'),
+(3,'03','Meja 03','03.svg',1,1,1,'2024-06-16 18:46:38'),
 (4,'04','Meja 04','04.svg',0,1,1,'2024-06-13 11:49:58');
 
 /*Table structure for table `password_reset_tokens` */
@@ -212,7 +227,40 @@ CREATE TABLE `sessions` (
 /*Data for the table `sessions` */
 
 insert  into `sessions`(`id`,`user_id`,`ip_address`,`user_agent`,`payload`,`last_activity`) values 
-('OD0mcib8I4MvqlEDofMKo8Aqs0uWZovv2xsRg25Z',1,'127.0.0.1','Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36 Edg/126.0.0.0','YTo0OntzOjY6Il90b2tlbiI7czo0MDoiclJJMGRqbHlZNW5NS1N2dFNBSkk2ZUNGREZjS1dLSVgySkhkdXhhNiI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MjY6Imh0dHBzOi8vY2FmZXN1ZHV0dGVtdS5rZ2RyIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MTt9',1718443225);
+('1F3wlP1pwzmzFcVqZvWEmgoqCUvioQ7mDq52auiF',4,'127.0.0.1','Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Mobile Safari/537.36 Edg/126.0.0.0','YTo0OntzOjY6Il90b2tlbiI7czo0MDoiNGZ4bG1NN3E3RGlOTTJWVWVYM2kwQ2pzY3N4NHllOFZhWDNORGFRNiI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzE6Imh0dHBzOi8vY2FmZXN1ZHV0dGVtdS5rZ2RyL2hvbWUiO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX1zOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aTo0O30=',1718525702),
+('Dtc8qMSEOq8MwVPX5gpkv8sR267zPu6sPpRBGTVp',1,'127.0.0.1','Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Mobile Safari/537.36 Edg/126.0.0.0','YTo0OntzOjY6Il90b2tlbiI7czo0MDoiZW15THZZcEpNNHBGQUV3Vm5BWkhua2duaG5LcGVzaUlXNkVEZ0hEQyI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzE6Imh0dHBzOi8vY2FmZXN1ZHV0dGVtdS5rZ2RyL2hvbWUiO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX1zOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aToxO30=',1718525846),
+('H54s7zWtFVQ7LRnpeVoSv46nyKCfXrAWipKe91Wh',1,'127.0.0.1','Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36 Edg/126.0.0.0','YTo0OntzOjY6Il90b2tlbiI7czo0MDoiSklIVnNLWjlIUjZJQmJncVhKUGh3YXV3bWJsNldJTEw3cGpraGlEMiI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzI6Imh0dHBzOi8vY2FmZXN1ZHV0dGVtdS5rZ2RyL3RhYmxlIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MTt9',1718541141),
+('kk4BwH2n9k2JgZS91rAqwHwpTDkDA0vpJi64pNZo',NULL,'192.168.175.254','Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Mobile Safari/537.36','YTozOntzOjY6Il90b2tlbiI7czo0MDoiVUswdE90RTF5Y1FvRXdaQ080UTV5MkxOOUUwcTlBMjFJVWZYWlQ1RCI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NDI6Imh0dHBzOi8vMTkyLjE2OC4xNzUuNS9jYWZlc3VkdXR0ZW11L3B1YmxpYyI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fX0=',1718541130),
+('NmfoO53cOCt8z1yvzTcVuAANvpj1A6NrA5z9Jjjh',4,'127.0.0.1','Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36 Edg/126.0.0.0','YTo0OntzOjY6Il90b2tlbiI7czo0MDoidzdEcEZLRWpGQ0lEeGZsT0NLcVk4anNuNWlVYUJhS1JnaXh6dHhYRiI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mzg6Imh0dHBzOi8vY2FmZXN1ZHV0dGVtdS5rZ2RyL2xpc3RwZXNhbmFuIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6NDt9',1718532187),
+('s5m93GX68cFb1R5cQEiutJmWecY6HdtIx3gmMjMe',2,'127.0.0.1','Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36 Edg/126.0.0.0','YTo0OntzOjY6Il90b2tlbiI7czo0MDoiQ3FGNkJybXpHc2k3TlI4OEVKMUcyMk9xc2JZTGZNY0s2a2ZWemtPZiI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzE6Imh0dHBzOi8vY2FmZXN1ZHV0dGVtdS5rZ2RyL2hvbWUiO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX1zOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aToyO30=',1718540387);
+
+/*Table structure for table `trx_ordering` */
+
+DROP TABLE IF EXISTS `trx_ordering`;
+
+CREATE TABLE `trx_ordering` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id_table` int(11) DEFAULT NULL,
+  `perangkat` varchar(255) DEFAULT NULL,
+  `orderan` text DEFAULT NULL,
+  `date_order` timestamp NULL DEFAULT current_timestamp(),
+  `status` int(11) DEFAULT NULL,
+  `is_active` int(11) DEFAULT NULL,
+  `last_update` timestamp NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+/*Data for the table `trx_ordering` */
+
+insert  into `trx_ordering`(`id`,`id_table`,`perangkat`,`orderan`,`date_order`,`status`,`is_active`,`last_update`) values 
+(1,1,'a29d37af6855101265bb762e76bf7544d7ebc800b098250194f787099c7cab74','[{\"id_product\": \"1\",\"qty\": \"6\",\"price\": \"9000\",\"dine_in\": \"4\",\"take_away\": \"2\",\"total\": \"54000\",\"status\": \"2\"},{\"id_product\": \"2\",\"qty\": \"3\",\"price\": \"8000\",\"dine_in\": \"2\",\"take_away\": \"1\",\"total\": \"24000\",\"status\": \"2\"},{\"id_product\": \"3\",\"qty\": \"6\",\"price\": \"30000\",\"dine_in\": \"4\",\"take_away\": \"2\",\"total\": \"180000\",\"status\": \"2\"}]','2024-06-16 09:42:49',4,0,'2024-06-16 18:13:20'),
+(2,2,'fb192dd67295c0f618ca090421d177207ed0f48aad7f15c630edc37be5b1ed72','[{\"id_product\": \"1\",\"qty\": \"4\",\"price\": \"9000\",\"dine_in\": \"2\",\"take_away\": \"2\",\"total\": \"36000\",\"status\": \"1\"},{\"id_product\": \"2\",\"qty\": \"4\",\"price\": \"8000\",\"dine_in\": \"2\",\"take_away\": \"2\",\"total\": \"32000\",\"status\": \"1\"},{\"id_product\": \"3\",\"qty\": \"4\",\"price\": \"30000\",\"dine_in\": \"2\",\"take_away\": \"2\",\"total\": \"120000\",\"status\": \"1\"}]','2024-06-16 15:12:44',2,1,'2024-06-16 17:02:24'),
+(3,3,'a29d37af6855101265bb762e76bf7544d7ebc800b098250194f787099c7cab74','[]','2024-06-16 18:46:38',4,0,'2024-06-16 18:52:07'),
+(4,3,'5ac11c5f7caa6b5ed16dad42d32a7b2640c244cd8ff11f3b04e0e9b5c9995884','[]','2024-06-16 19:28:14',1,0,'2024-06-16 19:29:39'),
+(5,1,'5ac11c5f7caa6b5ed16dad42d32a7b2640c244cd8ff11f3b04e0e9b5c9995884','[]','2024-06-16 19:28:26',1,0,'2024-06-16 19:29:43'),
+(6,1,'5ac11c5f7caa6b5ed16dad42d32a7b2640c244cd8ff11f3b04e0e9b5c9995884','[]','2024-06-16 19:30:03',1,0,'2024-06-16 19:30:51'),
+(7,1,'5ac11c5f7caa6b5ed16dad42d32a7b2640c244cd8ff11f3b04e0e9b5c9995884','[]','2024-06-16 19:31:07',1,0,'2024-06-16 19:31:47'),
+(8,1,'5ac11c5f7caa6b5ed16dad42d32a7b2640c244cd8ff11f3b04e0e9b5c9995884','[]','2024-06-16 19:32:05',1,1,'2024-06-16 19:32:05');
 
 /*Table structure for table `trx_product` */
 
@@ -234,9 +282,9 @@ CREATE TABLE `trx_product` (
 /*Data for the table `trx_product` */
 
 insert  into `trx_product`(`id`,`name`,`category_id`,`price`,`qty`,`foto`,`is_active`,`update_by`,`last_update`) values 
-(1,'Nasi Goreng',1,9000,80,'8925.png',1,1,'2024-06-11 10:59:35'),
-(2,'Mie Goreng',1,8000,10,'84687.png',1,1,'2024-06-11 10:59:56'),
-(3,'Ayam Kecap',1,30000,70,'39946.png',1,1,'2024-06-11 14:31:53');
+(1,'Nasi Goreng',1,9000,70,'8925.png',1,1,'2024-06-16 15:12:53'),
+(2,'Mie Goreng',1,8000,0,'84687.png',2,1,'2024-06-16 15:14:57'),
+(3,'Ayam Kecap',1,30000,60,'39946.png',1,1,'2024-06-16 15:13:08');
 
 /*Table structure for table `users` */
 
