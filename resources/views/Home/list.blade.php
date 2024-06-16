@@ -13,13 +13,23 @@
                                 <small>Masukkan kode atau scan untuk memesan</small>
                             </div>
                             <div class="row g-3">
-                                <div class="col">
-                                    <label for="postcod" class="visually-hidden">Postcode</label>
-                                    <input type="text" class="form-control" id="" placeholder="Enter Postcode" disabled>
-                                </div>
-                                <div class="col-auto">
-                                    <button type="submit" class="btn btn-primary" data-name="action_scane"><i class="bi bi-qr-code-scan"></i></button>
-                                </div>
+                                @if (isset($cek_order))
+                                    <div class="col">
+                                        <label for="postcod" class="visually-hidden">Postcode</label>
+                                        <input type="text" class="form-control" id="" value="{{$cek_order->kode_table}}" disabled>
+                                    </div>
+                                    <div class="col-auto">
+                                        <button type="button" class="btn btn-primary" disabled><i class="bi bi-qr-code-scan"></i></button>
+                                    </div>
+                                @else
+                                    <div class="col">
+                                        <label for="postcod" class="visually-hidden">Postcode</label>
+                                        <input type="text" class="form-control" id="" placeholder="Enter Postcode" disabled>
+                                    </div>
+                                    <div class="col-auto">
+                                        <button type="button" class="btn btn-primary" data-name="action_scane"><i class="bi bi-qr-code-scan"></i></button>
+                                    </div>
+                                @endif
                             </div>
                         </div>
                     </div>
@@ -132,17 +142,16 @@
                                     <div>
                                         <span class="text-dark">Stock : {{$val->qty}}</span>
                                     </div>
-                                    <div>
-                                        <div class="input-group input-spinner  ">
-                                            <input type="button" value="-" class="button-minus  btn  btn-sm " data-field="quantity">
-                                            <input type="number" step="1" max="{{$val->qty}}" value="1" name="quantity" class="quantity-field form-control-sm form-input">
-                                            <input type="button" value="+" class="button-plus btn btn-sm " data-field="quantity">
-                                        </div>
-                                    </div>
                                     <div class="mt-2">
-                                        <a href="" class="btn btn-primary ">
-                                            <i class="bi bi-cart"></i> Add to Cart
-                                        </a>
+                                        @if (isset($cek_order->id))
+                                            <button type="button" class="btn btn-primary" data-name="add_cart" data-item="{{$val->id}}">
+                                                <i class="bi bi-cart"></i> Add to Cart
+                                            </button>
+                                        @else
+                                            <button type="button" class="btn btn-primary" data-name="action_scane">
+                                                <i class="bi bi-cart"></i> Add to Cart
+                                            </button>
+                                        @endif
                                     </div>
                                 </div>
                             </div>
@@ -172,18 +181,224 @@
             </div>
             <div class="modal-footer border-0">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" data-name="">Submit</button>
+                <button type="button" class="btn btn-primary" data-name="action_booking">Submit</button>
             </div>
         </div>
     </div>
 </div>
 {{-- MOdal Scan --}}
 
+{{-- Modal Add cart --}}
+<div class="modal fade" id="modal_add_cart" tabindex="-1" aria-labelledby="userModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content p-4">
+            <div class="modal-header border-0">
+                <h5 class="modal-title fs-3 fw-bold" id="userModalLabel">Add Orderan</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-12 mb-3">
+                        <div class="row align-items-center">
+                            <div class="col-md-4 col-5">
+                                <div class="text-center position-relative ">
+                                    <img id="add_foto" src="{{asset('assets/img/products/default.png')}}" alt="" class="mb-3 img-fluid" style="min-width: 5rem;max-width: 5rem;">
+                                </div>
+                            </div>
+                            <div class="col-md-8 col-7 flex-grow-1">
+                                <div class="text-small mb-1">
+                                    <small id="add_cat">-</small>
+                                </div>
+                                <h2 class="fs-6" id="add_name">
+                                    -
+                                </h2>
+                                <span class="text-dark" id="add_price">-</span><br>
+                                <span class="text-dark" id="add_stock">Stock : -</span>
+                            <div>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="row mt-3">
+                            <div class="col-6 ">
+                                <label for="">Dine In</label>
+                                <div class="input-group input-spinner">
+                                    <input type="button" value="-" class="button-minus btn btn-sm " data-field="quantity">
+                                    <input type="number" step="1" max="" value="1" name="quantity" data-name="dine_in" class="quantity-field form-control-sm form-input">
+                                    <input type="button" value="+" class="button-plus btn btn-sm " data-field="quantity">
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <label for="">Take Away</label>
+                                <div class="input-group input-spinner">
+                                    <input type="button" value="-" class="button-minus btn btn-sm" data-field="quantity">
+                                    <input type="number" step="1" max="" value="1" name="quantity" data-name="take_away" class="quantity-field form-control-sm form-input">
+                                    <input type="button" value="+" class="button-plus btn btn-sm " data-field="quantity">
+                                </div>
+                            </div>
+                        </div>
+                        <input type="hidden" data-name="id_product">
+                        @if (isset($cek_order->id))
+                            <input type="hidden" data-name="id_order" value="{{$cek_order->id}}">
+                        @endif
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer border-0">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" data-name="save_add">Add</button>
+            </div>
+        </div>
+    </div>
+</div>
+{{-- End Modal Add Cart --}}
+
+{{-- JS Add Cart --}}
+<script>
+    $(document).on("click", "[data-name='add_cart']", function (e) {
+        var id      = $(this).attr("data-item");
+        $.ajax({
+            type: "POST",
+            url: "{{ route('showprod') }}",
+            data: {id:id},
+            cache: false,
+            success: function(data) {
+                // console.log(data['data']);
+                $("[data-name='dine_in']").val(0);
+                $("[data-name='take_away']").val(0);
+                $("[data-name='id_product']").val(id);
+                $("#add_cat").text(data.cat);
+                $("#add_name").text(data.name);
+                $("#add_price").text('Rp. '+data.price);
+                $("#add_stock").text('Stock : '+data.stock);
+
+                var show_foto   = "assets/img/products/"+data.foto;
+                $('#add_foto').attr('src', show_foto);
+                $("#modal_add_cart").modal('show');
+            },
+            error: function (data) {
+                Swal.fire({
+                    position:'center',
+                    title: 'Action Not Valid!',
+                    icon: 'warning',
+                    showConfirmButton: true,
+                    // timer: 1500
+                }).then((data) => {
+                    // location.reload();
+                })
+            }
+        });
+    });
+
+    $(document).on("click", "[data-name='save_add']", function (e) {
+        var id_product  = $("[data-name='id_product']").val();
+        var dine_in     = $("[data-name='dine_in']").val();
+        var take_away   = $("[data-name='take_away']").val();
+        var id_order    = $("[data-name='id_order']").val();
+
+        if (id_product === '' || dine_in === '' || take_away == '') {
+            Swal.fire({
+                position:'center',
+                title: 'Form is empty!',
+                icon: 'error',
+                showConfirmButton: false,
+                timer: 1000
+            })
+        }else{
+            $.ajax({
+                type: "POST",
+                url: "{{ route('addcart') }}",
+                data: {id_product: id_product, dine_in: dine_in, take_away: take_away, id_order: id_order},
+                cache: false,
+                success: function(response) {
+                    if(response === 'success'){
+                        Swal.fire({
+                            position: 'center',
+                            title: 'Success!',
+                            icon: 'success',
+                            showConfirmButton: false,
+                            timer: 1500
+                        }).then((response) => {
+                            location.reload();
+                        })
+                    }else{
+                        Swal.fire({
+                            position: 'center',
+                            title: 'Kode Tidak bOleh sama!',
+                            icon: 'warning',
+                            showConfirmButton: true,
+                            // timer: 1500
+                        }).then((response) => {
+                            // location.reload();
+                        })
+                    }
+                },
+                error: function (data) {
+                    Swal.fire({
+                        position:'center',
+                        title: 'Action Not Valid!',
+                        icon: 'warning',
+                        showConfirmButton: true,
+                        // timer: 1500
+                    }).then((data) => {
+                        // location.reload();
+                    })
+                }
+            });
+        }
+
+    });
+</script>
+{{-- End JS Add Cart --}}
+
 {{-- JS Scan --}}
 <script>
     $(document).on("click", "[data-name='action_scane']", function (e) {
-
+        $("[data-name='kode']").val('');
         $("#modal_scan").modal('show');
+    });
+
+    $(document).on("click", "[data-name='action_booking']", function (e) {
+        var kode        = $("[data-name='kode']").val();
+
+        if (kode === '') {
+            Swal.fire({
+                position:'center',
+                title: 'Form is empty!',
+                icon: 'error',
+                showConfirmButton: false,
+                timer: 1000
+            })
+        }else{
+            $.ajax({
+                type: "POST",
+                url: "{{route('actbooking')}}",
+                data: {kode: kode},
+                cache: false,
+                success: function(data) {
+                    // console.log(data);
+                    Swal.fire({
+                        position:'center',
+                        title: 'Success!',
+                        icon: 'success',
+                        showConfirmButton: false,
+                        timer: 1500
+                    }).then((data) => {
+                        location.reload();
+                    })
+                },
+                error: function (data) {
+                    Swal.fire({
+                        position:'center',
+                        title: 'Action Not Valid!',
+                        icon: 'warning',
+                        showConfirmButton: true,
+                        // timer: 1500
+                    }).then((data) => {
+                        // location.reload();
+                    })
+                }
+            });
+        }
     });
 </script>
 {{-- End JS Scan --}}

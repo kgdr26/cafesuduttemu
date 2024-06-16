@@ -170,13 +170,15 @@ CREATE TABLE `mst_table` (
   `update_by` int(11) DEFAULT NULL,
   `last_update` timestamp NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 /*Data for the table `mst_table` */
 
 insert  into `mst_table`(`id`,`kode`,`name`,`qr_code`,`status`,`is_active`,`update_by`,`last_update`) values 
 (1,'01','Meja 01','01.svg',0,1,1,'2024-06-12 23:51:57'),
-(2,'02','Meja 02','02.svg',0,1,1,'2024-06-12 23:52:25');
+(2,'02','Meja 02','02.svg',0,1,1,'2024-06-12 23:52:25'),
+(3,'03','Meja 03','03.svg',0,1,1,'2024-06-13 11:49:26'),
+(4,'04','Meja 04','04.svg',0,1,1,'2024-06-13 11:49:58');
 
 /*Table structure for table `password_reset_tokens` */
 
@@ -210,9 +212,7 @@ CREATE TABLE `sessions` (
 /*Data for the table `sessions` */
 
 insert  into `sessions`(`id`,`user_id`,`ip_address`,`user_agent`,`payload`,`last_activity`) values 
-('hJsMHss2JAeUiITjH9kK4xOSDUyxuG7ALfYvbCdF',1,'127.0.0.1','Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36 Edg/125.0.0.0','YTo1OntzOjY6Il90b2tlbiI7czo0MDoiNjZqempwbEtOYm1qa3N0aGNMc2drZ3hrVDJIOTExRkxkcGNoRFd1QiI7czozOiJ1cmwiO2E6MTp7czo4OiJpbnRlbmRlZCI7czozNToiaHR0cHM6Ly9jYWZlc3VkdXR0ZW11LmtnZHIvY2F0ZWdvcnkiO31zOjk6Il9wcmV2aW91cyI7YToxOntzOjM6InVybCI7czozMjoiaHR0cHM6Ly9jYWZlc3VkdXR0ZW11LmtnZHIvdXNlcnMiO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX1zOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aToxO30=',1718235571),
-('KHzWuH1KeLeuyKVGS8lbdUqGzTncTj5W8LgGjzeH',NULL,'127.0.0.1','Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36 Edg/125.0.0.0','YTozOntzOjY6Il90b2tlbiI7czo0MDoiNndaRXBWajloTFVnM2ZOc20xTkxxVWdnUmhiN0M4aXEwU1l0ZXBLaSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzI6Imh0dHBzOi8vY2FmZXN1ZHV0dGVtdS5rZ2RyL2xvZ2luIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1718235579),
-('UFACLGE1QzBrZWP3vwfnjQwAP2m1UfnRYh8Mui6S',1,'127.0.0.1','Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36 Edg/125.0.0.0','YTo0OntzOjY6Il90b2tlbiI7czo0MDoiTlJ0V0kwQ1V1WjlpUWgwaGl3TFJyQlRIRnJuU0Z5em1ocXlZMWhudCI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzI6Imh0dHBzOi8vY2FmZXN1ZHV0dGVtdS5rZ2RyL3VzZXJzIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MTt9',1718211154);
+('OD0mcib8I4MvqlEDofMKo8Aqs0uWZovv2xsRg25Z',1,'127.0.0.1','Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36 Edg/126.0.0.0','YTo0OntzOjY6Il90b2tlbiI7czo0MDoiclJJMGRqbHlZNW5NS1N2dFNBSkk2ZUNGREZjS1dLSVgySkhkdXhhNiI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MjY6Imh0dHBzOi8vY2FmZXN1ZHV0dGVtdS5rZ2RyIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MTt9',1718443225);
 
 /*Table structure for table `trx_product` */
 

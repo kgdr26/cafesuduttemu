@@ -13,6 +13,11 @@ use App\Http\Controllers\AdminController;
 
 Route::get('/', [HomeController::class, 'home'])->name('home');
 Route::get('home', [HomeController::class, 'home'])->name('home');
+Route::post('actbooking', [HomeController::class, 'actbooking'])->name('actbooking');
+Route::post('showdataorder', [HomeController::class, 'showdataorder'])->name('showdataorder');
+Route::post('addcart', [HomeController::class, 'addcart'])->name('addcart');
+Route::post('showprod', [HomeController::class, 'showprod'])->name('showprod');
+Route::post('actcheckout', [HomeController::class, 'actcheckout'])->name('actcheckout');
 
 // Login
 Route::get('login', [AuthController::class, 'ShowFormLogin'])->name('login');

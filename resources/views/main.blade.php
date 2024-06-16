@@ -37,7 +37,7 @@
             width: 10rem;
             height: 10rem;
             vertical-align: -.125em;
-            border: 1rem solid #012970;
+            border: 1rem solid #76453b;
             border-right-color: transparent;
             border-radius: 50%;
             -webkit-animation: .75s linear infinite spinner-border;

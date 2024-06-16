@@ -57,7 +57,7 @@
                                         </td>
                                         <td>
                                             @if ($value->status == 1)
-                                                <span class="badge bg-info text-dark">Terisi</span>
+                                                <span class="badge bg-info">Terisi</span>
                                             @else
                                                 <span class="badge bg-danger">Kosong</span>
                                             @endif
@@ -200,15 +200,27 @@
                 cache: false,
                 success: function(data) {
                     // console.log(data);
-                    Swal.fire({
-                        position:'center',
-                        title: 'Success!',
-                        icon: 'success',
-                        showConfirmButton: false,
-                        timer: 1500
-                    }).then((data) => {
-                        location.reload();
-                    })
+                    if(response === 'success'){
+                        Swal.fire({
+                            position: 'center',
+                            title: 'Success!',
+                            icon: 'success',
+                            showConfirmButton: false,
+                            timer: 1500
+                        }).then((response) => {
+                            location.reload();
+                        })
+                    }else{
+                        Swal.fire({
+                            position: 'center',
+                            title: 'Kode Tidak bOleh sama!',
+                            icon: 'warning',
+                            showConfirmButton: true,
+                            // timer: 1500
+                        }).then((response) => {
+                            // location.reload();
+                        })
+                    }
                 },
                 error: function (data) {
                     Swal.fire({
@@ -283,15 +295,27 @@
                 cache: false,
                 success: function(data) {
                     // console.log(data);
-                    Swal.fire({
-                        position:'center',
-                        title: 'Success!',
-                        icon: 'success',
-                        showConfirmButton: false,
-                        timer: 1500
-                    }).then((data) => {
-                        location.reload();
-                    })
+                    if(response === 'success'){
+                        Swal.fire({
+                            position: 'center',
+                            title: 'Success!',
+                            icon: 'success',
+                            showConfirmButton: false,
+                            timer: 1500
+                        }).then((response) => {
+                            location.reload();
+                        })
+                    }else{
+                        Swal.fire({
+                            position: 'center',
+                            title: 'Kode Tidak bOleh sama!',
+                            icon: 'warning',
+                            showConfirmButton: true,
+                            // timer: 1500
+                        }).then((response) => {
+                            // location.reload();
+                        })
+                    }
                 },
                 error: function (data) {
                     Swal.fire({

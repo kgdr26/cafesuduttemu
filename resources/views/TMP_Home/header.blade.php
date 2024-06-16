@@ -28,39 +28,33 @@
                                                 </path>
                                             </svg>
                                         </span>
-                                        <span>$0.00</span>
+                                        <span id="totalh2_1">Rp. -</span>
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-end dropdown-menu-lg p-5">
                                         <div class="d-flex justify-content-between align-items-center border-bottom pb-5 mb-3">
                                             <div>
                                                 <span><i class="feather-icon icon-shopping-cart"></i></span>
-                                                <span class="text-success">3</span>
+                                                <span class="text-success" id="qtyh2_1">0</span>
                                             </div>
                                             <div>
                                                 <span>Total:</span>
-                                                <span class="text-success">$105.00</span>
+                                                <span class="text-success" id="totalh2_2">Rp. -</span>
                                             </div>
                                         </div>
-                                        <ul class="list-group list-group-flush">
-                                            <li class="list-group-item px-0 py-3">
-                                                <div class="row align-items-center g-0">
-                                                    <div class="col-lg-3 col-3 text-center">
-                                                        <img src="../assets/images/products/product-img-2.jpg" alt="Ecommerce" class="icon-xxl">
-                                                    </div>
-                                                    <div class="col-lg-7 col-7">
-                                                        <a href="shop-single.html" class="text-inherit">
-                                                            <h6 class="mb-0">NutriChoice Digestive</h6>
-                                                        </a>
-                                                        <small class="text-muted">1 x $29.00</small>
-                                                    </div>
-                                                    <div class="text-end col-lg-2 col-2">
-                                                        <a href="#" class="text-inherit" aria-label="Close">
-                                                            <i class="bi bi-x fs-4"></i>
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                            </li>
+                                        <ul class="list-group list-group-flush" id="listh2_1">
+
                                         </ul>
+                                        @if (isset($cek_order->id))
+                                            <div class="mt-2 d-grid">
+                                                @if ($cek_order->status == 1)
+                                                    <button type="button" class="btn btn-primary mb-3" data-name="checkout" data-item="{{$cek_order->id}}">Checkout</button>
+                                                @endif
+
+                                                @if ($cek_order->status == 2)
+                                                    <button type="button" class="btn btn-light" data-name="showorderan" data-item="{{$cek_order->id}}">View Orderan</button>
+                                                @endif
+                                            </div>
+                                        @endif
                                     </div>
                                 </div>
                             </div>
@@ -84,40 +78,33 @@
                                         </path>
                                     </svg>
                                 </span>
-                                <span>Rp. 0.00</span>
+                                <span id="totalh1_1">Rp. -</span>
                             </a>
                             <div class="dropdown-menu dropdown-menu-end dropdown-menu-lg p-5">
                                 <div class="d-flex justify-content-between align-items-center border-bottom pb-5">
                                     <div>
                                         <span><i class="feather-icon icon-shopping-cart"></i></span>
-                                        <span class="text-success">3</span>
+                                        <span class="text-success" id="qtyh1_1">0</span>
                                     </div>
                                     <div>
                                         <span>Total:</span>
-                                        <span class="text-success">Rp. 105.00</span>
-
+                                        <span class="text-success" id="totalh1_2">Rp. -</span>
                                     </div>
                                 </div>
-                                <ul class="list-group list-group-flush">
-                                    <li class="list-group-item px-0 py-3">
-                                        <div class="row align-items-center g-0">
-                                            <div class="col-lg-3 text-center">
-                                                <img src="../assets/images/products/product-img-1.jpg" alt="Ecommerce" class="icon-xxl">
-                                            </div>
-                                            <div class="col-lg-7">
-                                                <a href="shop-single.html" class="text-inherit">
-                                                    <h6 class="mb-0">Haldiram's Sev Bhujia</h6>
-                                                </a>
-                                                <small class="text-muted">1 x $35.00</small>
-                                            </div>
-                                            <div class="text-end col-lg-2">
-                                                <a href="#" class="text-inherit" aria-label="Close">
-                                                    <i class="bi bi-x fs-4"></i>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </li>
+                                <ul class="list-group list-group-flush" id="listh1_1">
+
                                 </ul>
+                                @if (isset($cek_order->id))
+                                    <div class="mt-2 d-grid">
+                                        @if ($cek_order->status == 1)
+                                            <button type="button" class="btn btn-primary mb-3" data-name="checkout" data-item="{{$cek_order->id}}">Checkout</button>
+                                        @endif
+
+                                        @if ($cek_order->status == 2)
+                                            <button type="button" class="btn btn-light" data-name="showorderan" data-item="{{$cek_order->id}}">View Orderan</button>
+                                        @endif
+                                    </div>
+                                @endif
                             </div>
                         </div>
                     </div>
@@ -126,3 +113,96 @@
         </div>
     </div>
 </header>
+
+{{-- JS List Order --}}
+<script>
+    $(document).ready(function() {
+        setTimeout(showdataorderan);
+    });
+
+    function showdataorderan() {
+        var id  = "{!! $id_ordering !!}";
+
+        $.ajax({
+            type: "POST",
+            url: "{{ route('showdataorder') }}",
+            data: {id:id},
+            cache: false,
+            success: function(data) {
+                // console.log(data);
+                $('#totalh1_1').text('Rp. '+data.total);
+                $('#totalh1_2').text('Rp. '+data.total);
+                $('#qtyh1_1').text(data.qty);
+                $('#listh1_1').html(data.list);
+
+                $('#totalh2_1').text('Rp. '+data.total);
+                $('#totalh2_2').text('Rp. '+data.total);
+                $('#qtyh2_1').text(data.qty);
+                $('#listh2_1').html(data.list);
+            },
+            error: function (data) {
+                Swal.fire({
+                    position:'center',
+                    title: 'Action Not Valid!',
+                    icon: 'warning',
+                    showConfirmButton: true,
+                    // timer: 1500
+                }).then((data) => {
+                    // location.reload();
+                })
+            }
+        });
+
+        // alert(id);
+    };
+</script>
+{{-- End JS List Order --}}
+
+{{-- JS Checkout --}}
+<script>
+    $(document).on("click", "[data-name='checkout']", function (e) {
+        var id  = $(this).attr("data-item");
+
+        $.ajax({
+            type: "POST",
+            url: "{{ route('actcheckout') }}",
+            data: {id:id},
+            cache: false,
+            success: function(response) {
+                if(response === 'success'){
+                    Swal.fire({
+                        position: 'center',
+                        title: 'Success!',
+                        icon: 'success',
+                        showConfirmButton: false,
+                        timer: 1500
+                    }).then((response) => {
+                        location.reload();
+                    })
+                }else{
+                    Swal.fire({
+                        position: 'center',
+                        title: 'Kode Tidak bOleh sama!',
+                        icon: 'warning',
+                        showConfirmButton: true,
+                        // timer: 1500
+                    }).then((response) => {
+                        // location.reload();
+                    })
+                }
+            },
+            error: function (data) {
+                Swal.fire({
+                    position:'center',
+                    title: 'Action Not Valid!',
+                    icon: 'warning',
+                    showConfirmButton: true,
+                    // timer: 1500
+                }).then((data) => {
+                    // location.reload();
+                })
+            }
+        });
+    });
+</script>
+{{-- End JS Checkout --}}
