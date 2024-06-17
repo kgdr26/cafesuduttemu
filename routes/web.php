@@ -29,6 +29,8 @@ Route::get('logout', [AuthController::class, 'logout'])->name('logout');
 Route::middleware(['auth'])->group(function () {
 
     Route::get('dasbor', [MainController::class, 'dasbor'])->name('dasbor');
+    Route::post('showdatadashboard', [MainController::class, 'showdatadashboard'])->name('showdatadashboard');
+    Route::post('showchartdashboard', [MainController::class, 'showchartdashboard'])->name('showchartdashboard');
 
     Route::middleware(['auth'],'role_id:1')->group(function () {
         Route::get('users', [AdminController::class, 'users'])->name('users');

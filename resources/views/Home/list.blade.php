@@ -2,7 +2,7 @@
 @section('content')
 
 <main>
-    <section class="py-lg-16 py-10" style="background: url(../assets/images/banner/banner-4.jpg)no-repeat; background-position: center; background-size: cover;">
+    <section class="py-lg-16 py-10" style="background: url({{asset('assets/img/bg_banner.jpeg')}})no-repeat; background-position: center; background-size: cover;">
         <div class="container">
             <div class="row">
                 <div class="col-xl-4  col-lg-6 col-md-7">

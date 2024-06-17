@@ -10,6 +10,9 @@
         <!-- Favicon icon-->
         <link rel="shortcut icon" type="image/x-icon" href="">
         <!-- Libs CSS -->
+        <link rel="stylesheet" type="text/css" href="{{ asset('assets/daterangepicker/datepicker.css')}}" />
+        <link rel="stylesheet" type="text/css" href="{{ asset('assets/daterangepicker/daterangepicker.css')}}" />
+        <link rel="stylesheet" href="{{asset('assets/daterangepicker/datepicker.min.css')}}">
         <link href="{{asset('assets/libs/bootstrap-icons/font/bootstrap-icons.min.css')}}" rel="stylesheet">
         <link href="{{ asset('assets/select2/select2.min.css') }}" rel="stylesheet">
         <link href="{{asset('assets/libs/feather-webfont/dist/feather-icons.css')}}" rel="stylesheet">
@@ -63,6 +66,8 @@
             gtag('config', 'G-M8S4MT3EYG');
         </script>
 
+        <script src="{{ asset ('assets/daterangepicker/moment.min.js')}}"></script>
+        <script src="{{ asset ('assets/daterangepicker/id.min.js')}}"></script>
         <script src="{{asset('assets/libs/jquery/dist/jquery.min.js')}}"></script>
         <script src="{{asset('assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js')}}"></script>
         <script src="{{asset('assets/libs/simplebar/dist/simplebar.min.js')}}"></script>
@@ -71,6 +76,10 @@
         <link href="{{asset('assets/datatables/dataTables.bootstrap4.min.css')}}" rel="stylesheet">
         <script src="{{asset('assets/datatables/jquery.dataTables.min.js')}}"></script>
         <script src="{{asset('assets/datatables/dataTables.bootstrap4.min.js')}}"></script>
+        <script src="{{asset('assets/highchart/v10highcharts.js')}}"></script>
+        <script type="text/javascript" src="{{ asset('assets/daterangepicker/daterangepicker.js')}}"></script>
+        <script type="text/javascript" src="{{ asset('assets/daterangepicker/datepicker.js')}}"></script>
+        <script type="text/javascript" src="{{ asset('assets/daterangepicker/bootstrap-datepicker.js')}}"></script>
         <script>
             $.ajaxSetup({
                 headers: {

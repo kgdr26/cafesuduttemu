@@ -33,9 +33,13 @@ class MainController extends Controller
     }
 
     function dasbor(): object {
+        $start  = Carbon::now()->subDays(5);
+        $end    = Carbon::now()->addDays(5);
         $data = array(
             'idnusr' => $this->idnusr(),
             'title' => 'Dashboard',
+            'start' => Carbon::parse($start),
+            'end' => Carbon::parse($end)
         );
 
         return view('Dashboard.list')->with($data);
@@ -193,4 +197,101 @@ class MainController extends Controller
         $arr    = DB::select("SELECT * FROM $table WHERE $field=$id AND is_active=1 ");
         return response($arr);
     }
+
+    function showdatadashboard(Request $request) : object {
+        $date   = $request['date'];
+        $prd    = DB::table('trx_product')->select('trx_product.*', 'mst_category.name as cat_name')
+                    ->leftJoin('mst_category', 'mst_category.id', '=', 'trx_product.category_id')
+                    ->whereIn('trx_product.is_active', [1,2])->get();
+
+        $product    = [];
+        $table      = '';
+        $stock      = 0;
+        $soldout    = 0;
+        foreach($prd as $key => $val){
+            $nameproduct    = $val->name;
+            $catname        = $val->cat_name;
+            $stock += $val->qty;
+
+            $sold   = 0;
+            $amount = 0;
+            $listorder = DB::table('trx_ordering')->whereDate('date_order', $date)->get();
+            foreach($listorder as $k => $v){
+                $list = json_decode($v->orderan);
+                if(isset($list)){
+                    foreach($list as $a => $b){
+                        if($b->id_product == $val->id){
+                            $sold += $b->qty;
+                            $amount += $b->total;
+                            $soldout += $b->qty;
+                        }
+                    }
+                }
+            }
+
+            $table .= '<tr>';
+            $table .= '<th>'.$nameproduct.'</th>';
+            $table .= '<th>'.$catname.'</th>';
+            $table .= '<th>'.$sold.'</th>';
+            $table .= '<th>Rp. '.number_format($amount, 0, ',', '.').'</th>';
+            $table .= '</tr>';
+
+        }
+
+        $arr['c_product']   = count($prd);
+        $arr['c_stock']     = $stock;
+        $arr['c_sold']      = $soldout;
+        $arr['table']       = $table;
+        return response($arr);
+    }
+
+    function showchartdashboard(Request $request) : object {
+        $start  = $request['start'];
+        $end    = $request['end'];
+
+        if($start == null || $end == null){
+            $start  = Carbon::now()->subDays(5);
+            $end    = Carbon::now()->addDays(5);
+        }else{
+            $start  = $request['start'];
+            $end    = $request['end'];
+        }
+
+        $startDate  = Carbon::parse($start);
+        $endDate    = Carbon::parse($end);
+
+        $categories = [];
+        $series     = [];
+        $loop       = 0;
+        for ($date = $startDate->copy(); $date->lte($endDate); $date->addDay()) {
+            $dtloop = $loop++;
+            $categories[$dtloop] = Carbon::parse($date->toDateString())->isoFormat('DD MMM YYYY');
+
+            $amount = 0;
+            $listorder = DB::table('trx_ordering')->whereDate('date_order', $date->toDateString())->get();
+            if(count($listorder) == 0){
+                $series[$dtloop] = 0;
+            }else{
+                foreach($listorder as $k => $v){
+                    $list = json_decode($v->orderan);
+                    if(isset($list)){
+                        foreach($list as $a => $b){
+                            $amount += $b->total;
+                        }
+                        $series[$dtloop] = $amount;
+                    }else{
+                        $series[$dtloop] = 0;
+                    }
+                }
+            }
+
+
+        }
+
+        $arr['categories']  = $categories;
+        $arr['series']      = $series;
+
+        return response($arr);
+    }
+
 }
