@@ -48,6 +48,12 @@
                             <img src="../assets/images/svg-graphics/signin-g.svg" alt="" class="img-fluid">
                         </div>
                         <div class="col-12 col-md-6 offset-lg-1 col-lg-4 order-lg-2 order-1">
+                            @if(session('error'))
+                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                    <strong>Gagal Login !</strong> {{ Session::get('error') }}
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                </div>
+                            @endif
                             <div class="mb-lg-9 mb-5">
                                 <h1 class="mb-1 h2 fw-bold">Sign in to CafeSudutTemu</h1>
                                 <p>Welcome back to SudutTemu! Enter your username and password to get started.</p>

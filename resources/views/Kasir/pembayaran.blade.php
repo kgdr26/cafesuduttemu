@@ -88,7 +88,7 @@
                 <h1 class="modal-title fs-5" id="exampleModalLabel">Print Order</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body">
+            <div class="modal-body" id="areaprint">
 
                 <div class="card-body text-center py-8">
                     <img id="show_img" src="{{asset('assets/img/qrcode/01.svg')}}" alt="Grocery Ecommerce Template" class="mb-3 img-fluid" style="width: 20%;">
@@ -121,11 +121,42 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" data-name="print_orderan"><i class="bi bi-printer"></i></button>
             </div>
         </div>
     </div>
 </div>
 {{-- End Modal Print Order --}}
+
+{{-- JS Print HTML --}}
+<script>
+    $(document).on("click", "[data-name='print_orderan']", function (e) {
+        var divToPrint  = $("#areaprint");
+        var newWin = window.open('', '_blank');
+            newWin.document.open();
+            newWin.document.write(`
+                <!DOCTYPE html>
+                <html>
+                <head>
+                    <title>Print</title>
+                    <link rel="stylesheet" href="{{asset('assets/css/theme.min.css')}}">
+                    <style>
+                        body { font-family: Arial, sans-serif; }
+                        table { border-collapse: collapse; width: 100%; }
+                        table, th, td { border: 1px solid black; }
+                        th, td { padding: 8px; text-align: left; }
+                    </style>
+                </head>
+                <body>
+                    ${divToPrint.html()}
+                </body>
+                </html>
+            `);
+            newWin.document.close();
+            newWin.print();
+    });
+</script>
+{{-- End JS Print HTML --}}
 
 {{-- JS Print Orderan --}}
 <script>

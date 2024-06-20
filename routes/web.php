@@ -37,6 +37,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('category', [AdminController::class, 'category'])->name('category');
         Route::get('table', [AdminController::class, 'table'])->name('table');
         Route::get('product', [AdminController::class, 'product'])->name('product');
+        Route::post('editproduct', [AdminController::class, 'editproduct'])->name('editproduct');
         Route::post('addtable', [AdminController::class, 'addtable'])->name('addtable');
         Route::post('edittable', [AdminController::class, 'edittable'])->name('edittable');
     });

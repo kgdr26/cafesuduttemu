@@ -396,12 +396,18 @@
         var qty         = $("[data-name='edit_qty']").val();
         var category_id = $("[data-name='edit_category_id']").val();
         var foto        = $("[data-name='edit_foto']").val();
-        var is_active   = 1;
+
         var update_by   = "{!! $idnusr->id !!}";
         if(foto === ''){
             var foto    = 'default.png';
         }else{
             var foto    = $("[data-name='edit_foto']").val();
+        }
+
+        if(qty <= 0){
+            var is_active   = 2;
+        }else{
+            var is_active   = 1;
         }
 
         var table       = "trx_product";
@@ -494,7 +500,7 @@
 <script>
     $(document).on("click", "[data-name='delete']", function (e) {
         var id      = $(this).attr("data-item");
-        var table   = 'users';
+        var table   = 'trx_product';
         var whr     = 'id';
 
         Swal.fire({

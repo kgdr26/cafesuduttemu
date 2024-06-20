@@ -1,0 +1,12 @@
+revisi
+V(1. kurang tombol button (dan disambungin ke printan) pada menu kasir yg print pesanan
+V(2. ⁠di admin yg list product pas product dihapus tetap ada (padahal udh dihapus dan direfresh) (sudah di buat qty 0 pas dihapus masih tetap ada)
+V)3. ⁠di admin list product pas add product baru trs dedit qty 0 status tetap active tidak berubah menjadi inactive) tapi klo edit qty product yg lama itu status berubah jadi inactive)
+V)3. ⁠tampilan di manage user itu kan harus nya ada akun koki tapi gaada ditampilannya cuma admin sama kasir (tapi masih bisa login sebagai koki padahal di admin list user gaada koki)
+4. trs pas mau order ulang itu gaada button checkout nya di keranjang
+5. ⁠di kasir itu ada meja 3 tulisannya terisi gabisa di end order  sama print order tulisannya action not valid (padahal di koki juga udh gaada)
+6. ⁠dipelanggan pas add order stock tinggal 1 tapi bisa masukin pesanan lebih dari 1
+7. ⁠dipelanggan pas pencet view orderan ga tampil apa apa?
+V)8. ⁠pas print order meja lain tapi tulisannya dibawah qr nya tetep meja 01
+9. ⁠di list pesanan seharunnya ada button + - untuk nandain udh berapa pesanan yg selesai bukan cuma checklist box
+10. ⁠di list pesanan pas udh pencet order done (trs pelanggan reorder pesanan ga nampil lagi cardnya)

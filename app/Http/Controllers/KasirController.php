@@ -47,7 +47,7 @@ class KasirController extends Controller
 
     function showprintorder(Request $request): object {
         $id     = $request['id'];
-        $mj     = DB::table('mst_table')->where('id', 1)->first();
+        $mj     = DB::table('mst_table')->where('id', $id)->first();
         $dt     = DB::table('trx_ordering')->where('id_table', $id)->where('is_active', 1)->first();
         $data   = json_decode($dt->orderan);
 

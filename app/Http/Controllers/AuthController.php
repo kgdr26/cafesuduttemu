@@ -48,7 +48,19 @@ class AuthController extends Controller
         Auth::attempt($data);
 
         if (Auth::check()) { // true sekalian session field di users nanti bisa dipanggil via Auth
-            return redirect()->route('dasbor');
+            if(auth::user()->is_active > 0){
+                return redirect()->route('dasbor');
+            }else{
+                header("cache-Control: no-store, no-cache, must-revalidate");
+                header("cache-Control: post-check=0, pre-check=0", false);
+                header("Pragma: no-cache");
+                header("Expires: Sat, 26 Jul 1997 05:00:00 GMT");
+                Session::flush();
+                Session::flash('error', 'username sudah tidak terdaftar');
+                $request->session()->regenerate();
+                Auth::logout(); // menghapus session yang aktif
+                return redirect()->route('login');
+            }
         } else {
             //Login Fail
             Session::flash('error', 'username atau Password salah');
